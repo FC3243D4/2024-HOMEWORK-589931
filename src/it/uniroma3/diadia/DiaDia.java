@@ -122,18 +122,35 @@ public class DiaDia {
 	}
 
 	private void prendi(String nomeAttrezzo) {
-		Attrezzo a = this.partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
+		if(this.partita.getLabirinto().getStanzaCorrente().getNumeroAttrezzi()==0) { 
+			io.mostraMessaggio("nessun attrezzo presente nella stanza");
+			return;
+		}
+		else if(nomeAttrezzo == null) 
+			io.mostraMessaggio("spceificare l'attrezzo da prendere");
+		else {Attrezzo a = this.partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
 		this.partita.getGiocatore().getBorsa().addAttrezzo(a);
 		this.partita.getLabirinto().getStanzaCorrente().removeAttrezzo(a);
 		io.mostraMessaggio(nomeAttrezzo+" preso da "+this.partita.getLabirinto().getStanzaCorrente().getNome()+" e messo in borsa");
+		}
 	}
 
 	private void posa(String nomeAttrezzo) {
+		if(nomeAttrezzo==null) {
+			io.mostraMessaggio("specificare l'attrezzo da posare");
+			return;
+		}
+		if(this.partita.getGiocatore().getBorsa().isEmpty()) {
+			io.mostraMessaggio("nessun attrezzo nella borsa");
+			return;
+		}
 		Attrezzo a = this.partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo);
-		this.partita.getLabirinto().getStanzaCorrente().addAttrezzo(a);
-		this.partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
-		io.mostraMessaggio(nomeAttrezzo+" rimosso dalla borsa e posato in "+this.partita.getLabirinto().getStanzaCorrente().getNome());
-
+		if(a!=null) {
+			this.partita.getLabirinto().getStanzaCorrente().addAttrezzo(a);
+			this.partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
+			io.mostraMessaggio(nomeAttrezzo+" rimosso dalla borsa e posato in "+this.partita.getLabirinto().getStanzaCorrente().getNome());
+		}
+		else io.mostraMessaggio(nomeAttrezzo + " non presente in borsa");
 	}
 
 	public static void main(String[] argc) {
