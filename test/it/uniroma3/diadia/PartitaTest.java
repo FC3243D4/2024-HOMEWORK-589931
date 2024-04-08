@@ -22,7 +22,7 @@ class PartitaTest {
 		this.labirinto.setStanzaCorrente(stanza1);
 		this.labirinto.setStanzaVincente(stanza2);
 		this.partita = new Partita();
-		this.partita.getStanzaCorrente().impostaStanzaAdiacente("sud", stanza1);
+		this.partita.getLabirinto().getStanzaCorrente().impostaStanzaAdiacente("sud", stanza1);
 	}
 	
 	/* Test vinta */
@@ -40,20 +40,20 @@ class PartitaTest {
 	
 	@Test
 	void testVintaNonAncoraAncheDopoSpostamentoInStanzaNonVincente() {
-		this.partita.setStanzaCorrente(this.partita.getStanzaCorrente().getStanzaAdiacente(this.partita.getStanzaCorrente().getDirezioni()[1]));
+		this.partita.getLabirinto().setStanzaCorrente(this.partita.getLabirinto().getStanzaCorrente().getStanzaAdiacente(this.partita.getLabirinto().getStanzaCorrente().getDirezioni()[1]));
 		assertFalse(this.partita.vinta());
 	}
 	
 	@Test
 	void testVintaVittoriaDopoSpostamentoInStanzaVincente() {
-		this.partita.setStanzaCorrente(this.partita.getStanzaVincente());
+		this.partita.getLabirinto().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
 		assertTrue(this.partita.vinta());
 	}
 	
 	/* Test isFinita */
 	@Test
 	void testIsFinitaZeroCfu() {
-		this.partita.setCfu(0);
+		this.partita.getGiocatore().setCfu(0);
 		assertTrue(this.partita.isFinita());
 	}
 	
