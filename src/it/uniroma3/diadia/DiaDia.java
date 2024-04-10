@@ -120,7 +120,13 @@ public class DiaDia {
 	private void fine() {
 		io.mostraMessaggio("Grazie di aver giocato!");  // si desidera smettere
 	}
-
+	
+	/**
+	 * Cerca nella stanza un oggetto con il nome corrispondente 
+	 * al parametro e nel caso esista questo viene rimosso dalla 
+	 * stanza corrente e inserito nella borsa del giocatore
+	 * @param nomeAttrezzo
+	 */
 	private void prendi(String nomeAttrezzo) {
 		if(this.partita.getLabirinto().getStanzaCorrente().getNumeroAttrezzi()==0) { 
 			io.mostraMessaggio("nessun attrezzo presente nella stanza");
@@ -134,7 +140,12 @@ public class DiaDia {
 		io.mostraMessaggio(nomeAttrezzo+" preso da "+this.partita.getLabirinto().getStanzaCorrente().getNome()+" e messo in borsa");
 		}
 	}
-
+	
+	/**
+	 * Cerca nella borsa un oggetto con il nome corrispondente al 
+	 * parametro e in caso esista questo viene posato nella stanza corrente
+	 * @param nomeAttrezzo
+	 */
 	private void posa(String nomeAttrezzo) {
 		if(nomeAttrezzo==null) {
 			io.mostraMessaggio("specificare l'attrezzo da posare");

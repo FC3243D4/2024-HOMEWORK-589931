@@ -32,6 +32,7 @@ public class Giocatore {
 	}
 	
 	public void riduciCfu(int riduzione) {
+		if(riduzione<=0) return;
 		this.cfu-=riduzione;
 	}
 }

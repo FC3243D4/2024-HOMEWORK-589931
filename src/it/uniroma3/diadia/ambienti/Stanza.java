@@ -187,7 +187,9 @@ public class Stanza {
 		return false;
 	}
 
-
+	/**
+	 * Restituisce le direzioni in cui possiamo trovare una stanza adiacente
+	 */
 	public String[] getDirezioni() {
 		String[] direzioni = new String[this.numeroStanzeAdiacenti];
 	    for(int i=0; i<this.numeroStanzeAdiacenti; i++)
