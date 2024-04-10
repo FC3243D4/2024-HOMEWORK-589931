@@ -61,7 +61,6 @@ public class Partita {
 
 	/**
 	 * Imposta la partita come finita
-	 *
 	 */
 	public void setFinita() {
 		this.finita = true;

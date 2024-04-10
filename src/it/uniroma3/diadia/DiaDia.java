@@ -44,11 +44,6 @@ public class DiaDia {
 		io.mostraMessaggio("Attualmente ti trovi in");
 		io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getDescrizione());
 		do {
-			if (this.partita.isFinita()) { 
-				if(!this.partita.vinta()) 
-					io.mostraMessaggio("game over");
-				return;
-			}
 			istruzione = io.leggiRiga();
 		}while (!processaIstruzione(istruzione));
 	}   
@@ -60,26 +55,29 @@ public class DiaDia {
 	 * @return true se l'istruzione e' eseguita e il gioco continua, false altrimenti
 	 */
 	private boolean processaIstruzione(String istruzione) {
+		if(istruzione.isBlank()) return false;
 		Comando comandoDaEseguire = new Comando(istruzione);
 
-		if(comandoDaEseguire.getNome()!=null)
-			if (comandoDaEseguire.getNome().equals("fine")) {
-				this.fine(); 
-				return true;
-			} else if (comandoDaEseguire.getNome().equals("vai")) {
-				this.vai(comandoDaEseguire.getParametro());
-			}
-			else if (comandoDaEseguire.getNome().equals("aiuto"))
-				this.aiuto();
-			else if (comandoDaEseguire.getNome().equals("posa")) {
-				this.posa(comandoDaEseguire.getParametro());
-			}
-			else if (comandoDaEseguire.getNome().equals("prendi"))
-				this.prendi(comandoDaEseguire.getParametro());
+		if (comandoDaEseguire.getNome().equals("fine")) {
+			this.fine(); 
+			return true;
+		} else if (comandoDaEseguire.getNome().equals("vai")) {
+			this.vai(comandoDaEseguire.getParametro());
+		}
+		else if (comandoDaEseguire.getNome().equals("aiuto"))
+			this.aiuto();
+		else if (comandoDaEseguire.getNome().equals("posa")) {
+			this.posa(comandoDaEseguire.getParametro());
+		}
+		else if (comandoDaEseguire.getNome().equals("prendi"))
+			this.prendi(comandoDaEseguire.getParametro());
+		else
+			io.mostraMessaggio("Comando sconosciuto");
+		if(this.partita.isFinita()) {
+			if (this.partita.vinta())
+				io.mostraMessaggio("\nHai vinto!");
 			else
-				io.mostraMessaggio("Comando sconosciuto");
-		if (this.partita.vinta()) {
-			io.mostraMessaggio("Hai vinto!");
+				io.mostraMessaggio("\nHai finito i CFU\nGame Over");
 			return true;
 		} else
 			return false;
@@ -91,9 +89,10 @@ public class DiaDia {
 	 * Stampa informazioni di aiuto.
 	 */
 	private void aiuto() {
-		for(int i=0; i< elencoComandi.length; i++) 
-			io.mostraMessaggio(elencoComandi[i]+" ");
-		io.mostraMessaggio("");
+		StringBuilder elenco = new StringBuilder();
+		for(int i=0; i< elencoComandi.length; i++)
+			elenco.append(elencoComandi[i]+" ");
+		io.mostraMessaggio(elenco.toString());
 	}
 
 	/**
@@ -120,7 +119,7 @@ public class DiaDia {
 	private void fine() {
 		io.mostraMessaggio("Grazie di aver giocato!");  // si desidera smettere
 	}
-	
+
 	/**
 	 * Cerca nella stanza un oggetto con il nome corrispondente 
 	 * al parametro e nel caso esista questo viene rimosso dalla 
@@ -140,7 +139,7 @@ public class DiaDia {
 		io.mostraMessaggio(nomeAttrezzo+" preso da "+this.partita.getLabirinto().getStanzaCorrente().getNome()+" e messo in borsa");
 		}
 	}
-	
+
 	/**
 	 * Cerca nella borsa un oggetto con il nome corrispondente al 
 	 * parametro e in caso esista questo viene posato nella stanza corrente

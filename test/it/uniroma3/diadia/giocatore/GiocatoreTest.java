@@ -21,36 +21,36 @@ class GiocatoreTest {
 	
 	/* Test costruttore */
 	@Test
-	void testCfuInizializzatiCorrettamente() {
+	void testCostruttore_CfuInizializzatiCorrettamente() {
 		assertEquals(20,this.giocatore.getCfu());
 	}
 	
 	@Test
-	void testBorsaEffettivamenteBorsa() {
+	void testCostruttore_BorsaEffettivamenteBorsa() {
 		assertEquals("Borsa",this.giocatore.getBorsa().getClass().getSimpleName());
 	}
 	
 	@Test
-	void testBorsaModificabile() {
+	void testCostruttore_BorsaModificabile() {
 		this.giocatore.getBorsa().addAttrezzo(a);
 		assertTrue(this.giocatore.getBorsa().hasAttrezzo("a"));
 	}
 	
 	/* Test riduciCfu */
 	@Test
-	void testRiduciCfuSenzaArgomento() {
+	void testRiduciCfu_SenzaArgomento() {
 		this.giocatore.riduciCfu();
 		assertEquals(this.cfuMax-1,this.giocatore.getCfu());
 	}
 	
 	@Test
-	void testRiduciCfuConArgomentoInteroPositivo() {
+	void testRiduciCfu_ConArgomentoInteroPositivo() {
 		this.giocatore.riduciCfu(3);
 		assertEquals(this.cfuMax-3,this.giocatore.getCfu());
 	}
 	
 	@Test
-	void testRiduciCfuConArgomentoInteroNegativo() {
+	void testRiduciCfu_ConArgomentoInteroNegativo() {
 		this.giocatore.riduciCfu(-1);
 		assertEquals(20,this.giocatore.getCfu());
 	}

@@ -27,51 +27,51 @@ class PartitaTest {
 	
 	/* Test vinta */
 	@Test
-	void testVintaVittoria() {
+	void testVinta_Vittoria() {
 		this.labirinto.setStanzaCorrente(stanza2);
 		this.partita.setLabirinto(labirinto);
 		assertTrue(this.partita.vinta());
 	}
 	
 	@Test
-	void testVintaNonAncora() {
+	void testVinta_NonAncoraVinta() {
 		assertFalse(this.partita.vinta());
 	}
 	
 	@Test
-	void testVintaNonAncoraAncheDopoSpostamentoInStanzaNonVincente() {
+	void testVinta_NonAncoraVintaDopoSpostamentoInStanzaNonVincente() {
 		this.partita.getLabirinto().setStanzaCorrente(this.partita.getLabirinto().getStanzaCorrente().getStanzaAdiacente(this.partita.getLabirinto().getStanzaCorrente().getDirezioni()[1]));
 		assertFalse(this.partita.vinta());
 	}
 	
 	@Test
-	void testVintaVittoriaDopoSpostamentoInStanzaVincente() {
+	void testVinta_VittoriaDopoSpostamentoInStanzaVincente() {
 		this.partita.getLabirinto().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
 		assertTrue(this.partita.vinta());
 	}
 	
 	/* Test isFinita */
 	@Test
-	void testIsFinitaZeroCfu() {
+	void testIsFinita_ZeroCfu() {
 		this.partita.getGiocatore().setCfu(0);
 		assertTrue(this.partita.isFinita());
 	}
 	
 	@Test
-	void testIsFinitaFinitaTrue() {
+	void testIsFinita_FinitaTrue() {
 		this.partita.setFinita();
 		assertTrue(this.partita.isFinita());
 	}
 	
 	@Test
-	void testIsFinitaVinta() {
+	void testIsFinita_Vinta() {
 		this.labirinto.setStanzaCorrente(stanza2);
 		this.partita.setLabirinto(labirinto);
 		assertTrue(this.partita.isFinita());
 	}
 	
 	@Test
-	void testIsFinitaNonAncora() {
+	void testIsFinita_NonAncoraFinita() {
 		assertFalse(this.partita.isFinita());
 	}
 

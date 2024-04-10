@@ -16,18 +16,18 @@ class LabirintoTest {
 
 	/* Test creaStanze */
 	@Test
-	void testAttrezzoLanternaInN10() {
+	void testCreaStanza_AttrezzoLanternaInN10() {
 		this.labirinto.setStanzaCorrente(this.labirinto.getStanzaCorrente().getStanzaAdiacente("sud"));
 		assertTrue(this.labirinto.getStanzaCorrente().hasAttrezzo("lanterna"));
 	}
 	
 	@Test
-	void testAttrezzoOssoInAtrio(){
+	void testCreaStanze_AttrezzoOssoInAtrio(){
 		assertTrue(this.labirinto.getStanzaCorrente().hasAttrezzo("osso"));
 	}
 	
 	@Test
-	void testBibliotecaNordAtrioEAtrioSudBiblioteca() {
+	void testCreaStanze_BibliotecaNordAtrioEAtrioSudBiblioteca() {
 		assertEquals(this.labirinto.getStanzaVincente(),this.labirinto.getStanzaCorrente().getStanzaAdiacente("nord"));
 		assertEquals(this.labirinto.getStanzaCorrente(),this.labirinto.getStanzaVincente().getStanzaAdiacente("sud"));
 	}
