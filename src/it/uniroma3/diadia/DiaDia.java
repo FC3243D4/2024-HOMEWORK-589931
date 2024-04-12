@@ -1,5 +1,6 @@
 package it.uniroma3.diadia;
 
+import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -33,7 +34,9 @@ public class DiaDia {
 	private IOConsole io;
 
 	public DiaDia(IOConsole console) {
-		this.partita = new Partita();
+		Labirinto labirinto = new Labirinto();
+		labirinto.creaStanze();
+		this.partita = new Partita(labirinto);
 		this.io = console;
 	}
 
@@ -42,7 +45,7 @@ public class DiaDia {
 
 		io.mostraMessaggio(MESSAGGIO_BENVENUTO);
 		io.mostraMessaggio("Attualmente ti trovi in");
-		io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getDescrizione());
+		io.mostraMessaggio(partita.getGiocatore().getStanzaCorrente().getDescrizione());
 		do {
 			istruzione = io.leggiRiga();
 		}while (!processaIstruzione(istruzione));
@@ -103,14 +106,14 @@ public class DiaDia {
 		if(direzione==null)
 			io.mostraMessaggio("Dove vuoi andare ?");
 		Stanza prossimaStanza = null;
-		prossimaStanza = this.partita.getLabirinto().getStanzaCorrente().getStanzaAdiacente(direzione);
+		prossimaStanza = this.partita.getGiocatore().getStanzaCorrente().getStanzaAdiacente(direzione);
 		if (prossimaStanza == null)
 			io.mostraMessaggio("Direzione inesistente");
 		else {
-			this.partita.getLabirinto().setStanzaCorrente(prossimaStanza);
+			this.partita.getGiocatore().setStanzaCorrente(prossimaStanza);
 			this.partita.getGiocatore().riduciCfu();
 		}
-		io.mostraMessaggio(partita.getLabirinto().getStanzaCorrente().getDescrizione());
+		io.mostraMessaggio(partita.getGiocatore().getStanzaCorrente().getDescrizione());
 	}
 
 	/**
@@ -127,16 +130,16 @@ public class DiaDia {
 	 * @param nomeAttrezzo
 	 */
 	private void prendi(String nomeAttrezzo) {
-		if(this.partita.getLabirinto().getStanzaCorrente().getNumeroAttrezzi()==0) { 
+		if(this.partita.getGiocatore().getStanzaCorrente().getNumeroAttrezzi()==0) { 
 			io.mostraMessaggio("nessun attrezzo presente nella stanza");
 			return;
 		}
 		else if(nomeAttrezzo == null) 
 			io.mostraMessaggio("spceificare l'attrezzo da prendere");
-		else {Attrezzo a = this.partita.getLabirinto().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
+		else {Attrezzo a = this.partita.getGiocatore().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
 		this.partita.getGiocatore().getBorsa().addAttrezzo(a);
-		this.partita.getLabirinto().getStanzaCorrente().removeAttrezzo(a);
-		io.mostraMessaggio(nomeAttrezzo+" preso da "+this.partita.getLabirinto().getStanzaCorrente().getNome()+" e messo in borsa");
+		this.partita.getGiocatore().getStanzaCorrente().removeAttrezzo(a);
+		io.mostraMessaggio(nomeAttrezzo+" preso da "+this.partita.getGiocatore().getStanzaCorrente().getNome()+" e messo in borsa");
 		}
 	}
 
@@ -156,9 +159,9 @@ public class DiaDia {
 		}
 		Attrezzo a = this.partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo);
 		if(a!=null) {
-			this.partita.getLabirinto().getStanzaCorrente().addAttrezzo(a);
+			this.partita.getGiocatore().getStanzaCorrente().addAttrezzo(a);
 			this.partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
-			io.mostraMessaggio(nomeAttrezzo+" rimosso dalla borsa e posato in "+this.partita.getLabirinto().getStanzaCorrente().getNome());
+			io.mostraMessaggio(nomeAttrezzo+" rimosso dalla borsa e posato in "+this.partita.getGiocatore().getStanzaCorrente().getNome());
 		}
 		else io.mostraMessaggio(nomeAttrezzo + " non presente in borsa");
 	}
