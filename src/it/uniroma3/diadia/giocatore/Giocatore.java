@@ -7,7 +7,7 @@ public class Giocatore {
 	
 	private int cfu;
 	private Borsa borsa;
-	private Stanza stanzaCorrente;
+	//private Stanza stanzaCorrente;
 	
 	public Giocatore() {
 		this.cfu = CFU_INIZIALI;
@@ -29,7 +29,7 @@ public class Giocatore {
 	public void setBorsa(Borsa borsa) {
 		this.borsa = borsa;
 	}
-	
+	/*
 	public Stanza getStanzaCorrente() {
 		return stanzaCorrente;
 	}
@@ -37,7 +37,7 @@ public class Giocatore {
 	public void setStanzaCorrente(Stanza stanzaCorrente) {
 		this.stanzaCorrente = stanzaCorrente;
 	}
-
+*/
 	public void riduciCfu() {
 		this.cfu--;
 	}

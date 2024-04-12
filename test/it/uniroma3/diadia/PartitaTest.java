@@ -28,13 +28,15 @@ public class PartitaTest {
 		this.labirinto.setStanzaVincente(stanza2);
 		this.partita = new Partita(this.labirinto);
 		this.partita.getLabirinto().getStanzaIniziale().impostaStanzaAdiacente("sud", stanza1);
-		this.giocatore.setStanzaCorrente(this.labirinto.getStanzaIniziale());
+		//this.giocatore.setStanzaCorrente(this.labirinto.getStanzaIniziale());
+		this.partita.setStanzaCorrente(this.labirinto.getStanzaIniziale());
 	}
 	
 	/* Test vinta */
 	@Test
 	public void testVinta_Vittoria() {
-		this.partita.getGiocatore().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
+		//this.partita.getGiocatore().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
+		this.partita.setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
 		assertTrue(this.partita.vinta());
 	}
 	
@@ -45,13 +47,15 @@ public class PartitaTest {
 	
 	@Test
 	public void testVinta_NonAncoraVintaDopoSpostamentoInStanzaNonVincente() {
-		this.partita.getGiocatore().setStanzaCorrente(this.partita.getGiocatore().getStanzaCorrente().getStanzaAdiacente(this.partita.getGiocatore().getStanzaCorrente().getDirezioni()[1]));
+		//this.partita.getGiocatore().setStanzaCorrente(this.partita.getGiocatore().getStanzaCorrente().getStanzaAdiacente(this.partita.getGiocatore().getStanzaCorrente().getDirezioni()[1]));
+		this.partita.setStanzaCorrente(this.partita.getStanzaCorrente().getStanzaAdiacente(this.partita.getStanzaCorrente().getDirezioni()[1]));
 		assertFalse(this.partita.vinta());
 	}
 	
 	@Test
 	public void testVinta_VittoriaDopoSpostamentoInStanzaVincente() {
-		this.partita.getGiocatore().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
+		//this.partita.getGiocatore().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
+		this.partita.setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
 		assertTrue(this.partita.vinta());
 	}
 	
@@ -70,7 +74,8 @@ public class PartitaTest {
 	
 	@Test
 	public void testIsFinita_Vinta() {
-		this.partita.getGiocatore().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
+		//this.partita.getGiocatore().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
+		this.partita.setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
 		assertTrue(this.partita.isFinita());
 	}
 	

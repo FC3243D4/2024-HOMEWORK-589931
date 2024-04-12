@@ -45,7 +45,8 @@ public class DiaDia {
 
 		io.mostraMessaggio(MESSAGGIO_BENVENUTO);
 		io.mostraMessaggio("Attualmente ti trovi in");
-		io.mostraMessaggio(partita.getGiocatore().getStanzaCorrente().getDescrizione());
+		//io.mostraMessaggio(partita.getGiocatore().getStanzaCorrente().getDescrizione());
+		io.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 		do {
 			istruzione = io.leggiRiga();
 		}while (!processaIstruzione(istruzione));
@@ -106,14 +107,17 @@ public class DiaDia {
 		if(direzione==null)
 			io.mostraMessaggio("Dove vuoi andare ?");
 		Stanza prossimaStanza = null;
-		prossimaStanza = this.partita.getGiocatore().getStanzaCorrente().getStanzaAdiacente(direzione);
+		//prossimaStanza = this.partita.getGiocatore().getStanzaCorrente().getStanzaAdiacente(direzione);
+		prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
 		if (prossimaStanza == null)
 			io.mostraMessaggio("Direzione inesistente");
 		else {
-			this.partita.getGiocatore().setStanzaCorrente(prossimaStanza);
+			//this.partita.getGiocatore().setStanzaCorrente(prossimaStanza);
+			this.partita.setStanzaCorrente(prossimaStanza);
 			this.partita.getGiocatore().riduciCfu();
 		}
-		io.mostraMessaggio(partita.getGiocatore().getStanzaCorrente().getDescrizione());
+		//io.mostraMessaggio(partita.getGiocatore().getStanzaCorrente().getDescrizione());
+		io.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
 	}
 
 	/**
@@ -130,16 +134,24 @@ public class DiaDia {
 	 * @param nomeAttrezzo
 	 */
 	private void prendi(String nomeAttrezzo) {
-		if(this.partita.getGiocatore().getStanzaCorrente().getNumeroAttrezzi()==0) { 
+		//if(this.partita.getGiocatore().getStanzaCorrente().getNumeroAttrezzi()==0) { 
+		if(this.partita.getStanzaCorrente().getNumeroAttrezzi()==0) { 
 			io.mostraMessaggio("nessun attrezzo presente nella stanza");
 			return;
 		}
 		else if(nomeAttrezzo == null) 
 			io.mostraMessaggio("spceificare l'attrezzo da prendere");
-		else {Attrezzo a = this.partita.getGiocatore().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
-		this.partita.getGiocatore().getBorsa().addAttrezzo(a);
-		this.partita.getGiocatore().getStanzaCorrente().removeAttrezzo(a);
-		io.mostraMessaggio(nomeAttrezzo+" preso da "+this.partita.getGiocatore().getStanzaCorrente().getNome()+" e messo in borsa");
+		//else {Attrezzo a = this.partita.getGiocatore().getStanzaCorrente().getAttrezzo(nomeAttrezzo);
+		else {
+			Attrezzo a = this.partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
+			if(a!=null) {
+				this.partita.getGiocatore().getBorsa().addAttrezzo(a);
+				//this.partita.getGiocatore().getStanzaCorrente().removeAttrezzo(a);
+				//io.mostraMessaggio(nomeAttrezzo+" preso da "+this.partita.getGiocatore().getStanzaCorrente().getNome()+" e messo in borsa");
+				this.partita.getStanzaCorrente().removeAttrezzo(a);
+				io.mostraMessaggio(nomeAttrezzo+" preso da "+this.partita.getStanzaCorrente().getNome()+" e messo in borsa");
+			}
+			else io.mostraMessaggio(nomeAttrezzo+" non presente nella stanza");
 		}
 	}
 
@@ -159,9 +171,11 @@ public class DiaDia {
 		}
 		Attrezzo a = this.partita.getGiocatore().getBorsa().getAttrezzo(nomeAttrezzo);
 		if(a!=null) {
-			this.partita.getGiocatore().getStanzaCorrente().addAttrezzo(a);
+			//this.partita.getGiocatore().getStanzaCorrente().addAttrezzo(a);
+			this.partita.getStanzaCorrente().addAttrezzo(a);
 			this.partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
-			io.mostraMessaggio(nomeAttrezzo+" rimosso dalla borsa e posato in "+this.partita.getGiocatore().getStanzaCorrente().getNome());
+			//io.mostraMessaggio(nomeAttrezzo+" rimosso dalla borsa e posato in "+this.partita.getGiocatore().getStanzaCorrente().getNome());
+			io.mostraMessaggio(nomeAttrezzo+" rimosso dalla borsa e posato in "+this.partita.getStanzaCorrente().getNome());
 		}
 		else io.mostraMessaggio(nomeAttrezzo + " non presente in borsa");
 	}

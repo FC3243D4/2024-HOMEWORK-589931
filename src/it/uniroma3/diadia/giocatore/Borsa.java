@@ -15,7 +15,7 @@ public class Borsa {
 		this.attrezzi = new Attrezzo[10]; // speriamo bastino...
 		this.numeroAttrezzi = 0;
 	}
-	
+
 	/**
 	 * Aggiunge un attrezzo alla borsa dopo aver controllato che 
 	 * l'aggiunta non faccia superare il peso massimo disponibile
@@ -31,11 +31,11 @@ public class Borsa {
 		this.numeroAttrezzi++;
 		return true;
 	}
-	
+
 	public int getPesoMax() {
 		return pesoMax;
 	}
-	
+
 	/**
 	 * Cerca nella borsa l'attrezzo con il nome passato come 
 	 * parametro, in caso lo trovi lo restituisce in uscita
@@ -45,12 +45,13 @@ public class Borsa {
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
 		Attrezzo a = null;
 		for (int i= 0; i<this.numeroAttrezzi; i++)
-			if (this.attrezzi[i].getNome().equals(nomeAttrezzo))
-				a = attrezzi[i];
+			if(attrezzi[i]!=null)
+				if (this.attrezzi[i].getNome().equals(nomeAttrezzo))
+					a = attrezzi[i];
 
 		return a;
 	}
-	
+
 	public int getPeso() {
 		int peso = 0;
 		for (int i= 0; i<this.numeroAttrezzi; i++)
@@ -58,14 +59,14 @@ public class Borsa {
 
 		return peso;
 	}
-	
+
 	/*+
 	 * controlla se la borsa sia vuota
 	 */
 	public boolean isEmpty() {
 		return this.numeroAttrezzi == 0;
 	}
-	
+
 	/**
 	 * Controlla se all'interno della borsa esista 
 	 * un attrezzo con il nome passato per parametro
@@ -75,7 +76,7 @@ public class Borsa {
 	public boolean hasAttrezzo(String nomeAttrezzo) {
 		return this.getAttrezzo(nomeAttrezzo)!=null;
 	}
-	
+
 	/**
 	 * cerca l'attrezzo dal nome e in caso sia presente lo rimuove dalla borsa ritornandolo
 	 * @param nomeAttrezzo
@@ -93,12 +94,12 @@ public class Borsa {
 						this.numeroAttrezzi--;
 					}
 				i++;
-						
+
 			}
 		}
 		return a;
 	}
-	
+
 	/**
 	 * Restituisce una stringa con all'interno una descrizione del contenuto della borsa
 	 */
