@@ -84,11 +84,13 @@ public class Borsa {
 	 */
 	public Attrezzo removeAttrezzo(String nomeAttrezzo) {
 		Attrezzo a = null;
+		boolean trovato=false;
 		int i=0;
 		if(nomeAttrezzo!=null) {
 			for(Attrezzo b: this.attrezzi) {
-				if(b!=null)
+				if(b!=null && trovato==false)
 					if(b.getNome().equals(nomeAttrezzo)) {
+						trovato=true;
 						a=this.attrezzi[i];
 						this.attrezzi[i]=null;
 						this.numeroAttrezzi--;
