@@ -1,23 +1,25 @@
 package it.uniroma3.diadia;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.giocatore.Giocatore;
 
-class PartitaTest {
+public class PartitaTest {
 	private Labirinto labirinto;
 	private Stanza stanza1;
 	private Stanza stanza2;
 	private Partita partita;
 	private Giocatore giocatore;
 
-	@BeforeEach
-	void setUp() {
+	@Before
+	public void setUp() {
 		this.labirinto = new Labirinto();
 		this.giocatore = new Giocatore();
 		this.stanza1 = new Stanza("stanza1");
@@ -31,49 +33,49 @@ class PartitaTest {
 	
 	/* Test vinta */
 	@Test
-	void testVinta_Vittoria() {
+	public void testVinta_Vittoria() {
 		this.partita.getGiocatore().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
 		assertTrue(this.partita.vinta());
 	}
 	
 	@Test
-	void testVinta_NonAncoraVinta() {
+	public void testVinta_NonAncoraVinta() {
 		assertFalse(this.partita.vinta());
 	}
 	
 	@Test
-	void testVinta_NonAncoraVintaDopoSpostamentoInStanzaNonVincente() {
+	public void testVinta_NonAncoraVintaDopoSpostamentoInStanzaNonVincente() {
 		this.partita.getGiocatore().setStanzaCorrente(this.partita.getGiocatore().getStanzaCorrente().getStanzaAdiacente(this.partita.getGiocatore().getStanzaCorrente().getDirezioni()[1]));
 		assertFalse(this.partita.vinta());
 	}
 	
 	@Test
-	void testVinta_VittoriaDopoSpostamentoInStanzaVincente() {
+	public void testVinta_VittoriaDopoSpostamentoInStanzaVincente() {
 		this.partita.getGiocatore().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
 		assertTrue(this.partita.vinta());
 	}
 	
 	/* Test isFinita */
 	@Test
-	void testIsFinita_ZeroCfu() {
+	public void testIsFinita_ZeroCfu() {
 		this.partita.getGiocatore().setCfu(0);
 		assertTrue(this.partita.isFinita());
 	}
 	
 	@Test
-	void testIsFinita_FinitaTrue() {
+	public void testIsFinita_FinitaTrue() {
 		this.partita.setFinita();
 		assertTrue(this.partita.isFinita());
 	}
 	
 	@Test
-	void testIsFinita_Vinta() {
+	public void testIsFinita_Vinta() {
 		this.partita.getGiocatore().setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
 		assertTrue(this.partita.isFinita());
 	}
 	
 	@Test
-	void testIsFinita_NonAncoraFinita() {
+	public void testIsFinita_NonAncoraFinita() {
 		assertFalse(this.partita.isFinita());
 	}
 

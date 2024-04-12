@@ -1,21 +1,21 @@
 package it.uniroma3.diadia.giocatore;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-class BorsaTest {
+public class BorsaTest {
 	private Borsa borsa;
 	private Attrezzo a1;
 	private Attrezzo a2;
 	private Attrezzo peso10;
 	private Attrezzo peso9;
 	
-	@BeforeEach
-	void setUp() {
+	@Before
+	public void setUp() {
 		this.borsa = new Borsa(10);
 		this.a1 = new Attrezzo("a1",1);
 		this.a2 = new Attrezzo("a2",2);
@@ -25,13 +25,13 @@ class BorsaTest {
 	
 	/* Test addAttrezzo */
 	@Test
-	void testAddAttrezzo_BorsaVuota() {
+	public void testAddAttrezzo_BorsaVuota() {
 		this.borsa.addAttrezzo(a1);
 		assertTrue(this.borsa.hasAttrezzo("a1"));
 	}
 	
 	@Test
-	void testAddAttrezzo_BorsaNonVuota() {
+	public void testAddAttrezzo_BorsaNonVuota() {
 		this.borsa.addAttrezzo(a1);
 		this.borsa.addAttrezzo(a2);
 		assertTrue(this.borsa.hasAttrezzo("a1"));
@@ -39,92 +39,92 @@ class BorsaTest {
 	}
 	
 	@Test
-	void testAddAttrezzo_BorsaPiena() {
+	public void testAddAttrezzo_BorsaPiena() {
 		this.borsa.addAttrezzo(peso10);
 		assertFalse(this.borsa.addAttrezzo(a1));
 	}
 	
 	@Test
-	void testAddAttrezzo_BorsaQuasiPienaEAggiuntaSupererebbeLimite() {
+	public void testAddAttrezzo_BorsaQuasiPienaEAggiuntaSupererebbeLimite() {
 		this.borsa.addAttrezzo(peso9);
 		assertFalse(this.borsa.addAttrezzo(a2));
 	}
 	
 	/* Test getAttrezzo */
 	@Test
-	void testGetAttrezzo_OggettoInBorsa(){
+	public void testGetAttrezzo_OggettoInBorsa(){
 		this.borsa.addAttrezzo(a1);
 		assertEquals(a1,this.borsa.getAttrezzo("a1"));
 	}
 	
 	@Test
-	void testGetAttrezzo_BorsaVuota() {
+	public void testGetAttrezzo_BorsaVuota() {
 		assertNull(this.borsa.getAttrezzo("a1"));
 	}
 	
 	@Test
-	void testGetAttrezzo_BorsaNonVuotaOggettoNonInBorsa() {
+	public void testGetAttrezzo_BorsaNonVuotaOggettoNonInBorsa() {
 		this.borsa.addAttrezzo(a1);
 		assertNull(this.borsa.getAttrezzo("a2"));
 	}
 	
 	/* Test hasAttrezzo */
 	@Test
-	void testHasAttrezzo_OggettoInBorsa() {
+	public void testHasAttrezzo_OggettoInBorsa() {
 		this.borsa.addAttrezzo(a1);
 		assertTrue(this.borsa.hasAttrezzo("a1"));
 	}
 	
 	@Test
-	void testHasAttrezzo_BorsaVuota() {
+	public void testHasAttrezzo_BorsaVuota() {
 		assertFalse(this.borsa.hasAttrezzo("a1"));
 	}
 	
 	@Test
-	void testHasAttrezzo_BorsaNonVuotaOggettoNonInBorsa() {
+	public void testHasAttrezzo_BorsaNonVuotaOggettoNonInBorsa() {
 		this.borsa.addAttrezzo(a1);
 		assertFalse(this.borsa.hasAttrezzo("a2"));
 	}
 	
 	/* Test removeAttrezzo */
 	@Test
-	void testRemoveAttrezzo_InBorsa() {
+	public void testRemoveAttrezzo_InBorsa() {
 		this.borsa.addAttrezzo(a1);
 		assertEquals(a1,this.borsa.removeAttrezzo("a1"));
 	}
 	
 	@Test
-	void testRemoveAttrezzo_NonInBorsa() {
+	public void testRemoveAttrezzo_NonInBorsa() {
 		this.borsa.addAttrezzo(a1);
 		assertNull(this.borsa.removeAttrezzo("a2"));
 	}
 	
 	@Test
-	void testRemoveAttrezzo_SecondoAttrezzo() {
+	public void testRemoveAttrezzo_SecondoAttrezzo() {
 		this.borsa.addAttrezzo(a1);
 		this.borsa.addAttrezzo(a2);
 		assertEquals(a2,this.borsa.removeAttrezzo("a2"));
 	}
 	
 	@Test
-	void testRemoveAttrezzo_BorsaVuota() {
+	public void testRemoveAttrezzo_BorsaVuota() {
 		assertNull(this.borsa.removeAttrezzo("a1"));
 	}
 	
 	/* Test isEmpty */
 	@Test
-	void testIsEmpty_BorsaVuota() {
+	public void testIsEmpty_BorsaVuota() {
 		assertTrue(this.borsa.isEmpty());
 	}
 	
 	@Test
-	void testIsEmpty_BorsaNonVuota() {
+	public void testIsEmpty_BorsaNonVuota() {
 		this.borsa.addAttrezzo(a1);
 		assertFalse(this.borsa.isEmpty());
 	}
 	
 	@Test
-	void testIsEmpty_BorsaPiena() {
+	public void testIsEmpty_BorsaPiena() {
 		this.borsa.addAttrezzo(peso10);
 		assertFalse(this.borsa.isEmpty());
 	}
