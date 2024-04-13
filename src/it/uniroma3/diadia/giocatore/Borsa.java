@@ -12,7 +12,7 @@ public class Borsa {
 	}
 	public Borsa(int pesoMax) {
 		this.pesoMax = pesoMax;
-		this.attrezzi = new Attrezzo[10]; // speriamo bastino...
+		this.attrezzi = new Attrezzo[9]; // speriamo bastino...
 		this.numeroAttrezzi = 0;
 	}
 
@@ -92,8 +92,18 @@ public class Borsa {
 					if(b.getNome().equals(nomeAttrezzo)) {
 						trovato=true;
 						a=this.attrezzi[i];
+						if(i<(attrezzi.length-1))
+							if(this.attrezzi[i+1]==null)
+								this.attrezzi[i]=null;
+							else 
+								if(i<(this.attrezzi.length-1))
+									do {
+										this.attrezzi[i]=this.attrezzi[i+1];
+										i++;
+									} while(this.attrezzi[i]!=null);
 						this.attrezzi[i]=null;
 						this.numeroAttrezzi--;
+						return a;
 					}
 				i++;
 
@@ -110,7 +120,7 @@ public class Borsa {
 
 		if (!this.isEmpty()) {
 			s.append("Contenuto borsa ("+this.getPeso()+"kg/"+this.getPesoMax()+"kg): ");
-			for (int i= 0; i<this.numeroAttrezzi; i++)
+			for (int i= 0; i<10; i++)
 				s.append(attrezzi[i].toString()+" ");
 		}
 		else
