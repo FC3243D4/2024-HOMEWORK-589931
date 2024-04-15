@@ -1,13 +1,10 @@
 package it.uniroma3.diadia.giocatore;
 
-import it.uniroma3.diadia.ambienti.Stanza;
-
 public class Giocatore {
 	static final private int CFU_INIZIALI = 20;
 	
 	private int cfu;
 	private Borsa borsa;
-	//private Stanza stanzaCorrente;
 	
 	public Giocatore() {
 		this.cfu = CFU_INIZIALI;
@@ -29,15 +26,7 @@ public class Giocatore {
 	public void setBorsa(Borsa borsa) {
 		this.borsa = borsa;
 	}
-	/*
-	public Stanza getStanzaCorrente() {
-		return stanzaCorrente;
-	}
 
-	public void setStanzaCorrente(Stanza stanzaCorrente) {
-		this.stanzaCorrente = stanzaCorrente;
-	}
-*/
 	public void riduciCfu() {
 		this.cfu--;
 	}
