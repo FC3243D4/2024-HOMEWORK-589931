@@ -95,7 +95,7 @@ public class DiaDia {
 	private void aiuto() {
 		StringBuilder elenco = new StringBuilder();
 		for(int i=0; i< elencoComandi.length; i++)
-			elenco.append(elencoComandi[i]+" ");
+			elenco.append(elencoComandi[i]+"    ");
 		io.mostraMessaggio(elenco.toString());
 	}
 
