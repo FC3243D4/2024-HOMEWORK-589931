@@ -21,4 +21,14 @@ public class ComandoFine implements Comando{
 		this.io = io;
 	}
 
+	@Override
+	public String getNome() {
+		return "fine";
+	}
+
+	@Override
+	public String getParametro() {
+		return null;
+	}
+
 }

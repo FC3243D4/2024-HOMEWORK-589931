@@ -18,4 +18,10 @@ public interface Comando {
 	 * set IO del comando
 	 */
 	public void setIo(IO io);
+	
+	/**
+	 * getter
+	 */
+	public String getNome();
+	public String getParametro();
 }

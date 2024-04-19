@@ -21,4 +21,14 @@ public class ComandoNonValido implements Comando{
 		this.io = io;
 	}
 
+	@Override
+	public String getNome() {
+		return "comando non valido";
+	}
+
+	@Override
+	public String getParametro() {
+		return null;
+	}
+
 }

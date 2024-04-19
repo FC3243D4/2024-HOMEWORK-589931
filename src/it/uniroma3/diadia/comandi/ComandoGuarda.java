@@ -21,4 +21,14 @@ public class ComandoGuarda implements Comando{
 		this.io = io;
 	}
 
+	@Override
+	public String getNome() {
+		return "guarda";
+	}
+
+	@Override
+	public String getParametro() {
+		return null;
+	}
+
 }
