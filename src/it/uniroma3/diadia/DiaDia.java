@@ -61,6 +61,10 @@ public class DiaDia {
 
 		return this.partita.isFinita();
 	}
+	
+	public Partita getPartita() {
+		return this.partita;
+	}
 
 	public static void main(String[] argc) {
 		IO io = new IOConsole();
