@@ -32,10 +32,14 @@ public class DiaDia {
 	private IO io;
 
 	public DiaDia(IO io) {
-		Labirinto labirinto = new Labirinto();
-		labirinto.creaStanze();
+		Labirinto labirinto = new Labirinto().LabirintoDiaDia();
 		this.partita = new Partita(labirinto);
 		this.io = io;
+	}
+	
+	public DiaDia(IO io, Labirinto labirinto) {
+		this.partita = new Partita(labirinto);
+		this.io =io;
 	}
 
 	public void gioca() {

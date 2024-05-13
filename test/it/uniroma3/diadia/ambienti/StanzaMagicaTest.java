@@ -30,20 +30,20 @@ public class StanzaMagicaTest {
 	@Test
 	public void testAddAttrezzo_AttrezzoPosatoSogliaNonSuperataPesoENomeInalterati() {
 		assertTrue(this.stanzaMagicaSogliaStandard.addAttrezzo(attrezzo));
-		assertEquals(this.pesoOriginale,this.stanzaMagicaSogliaStandard.getAttrezzi()[0].getPeso());
-		assertEquals(this.nomeAttrezzo,this.stanzaMagicaSogliaStandard.getAttrezzi()[0].getNome());
+		assertEquals(this.pesoOriginale,this.stanzaMagicaSogliaStandard.getAttrezzi().get(0).getPeso());
+		assertEquals(this.nomeAttrezzo,this.stanzaMagicaSogliaStandard.getAttrezzi().get(0).getNome());
 	}
 
 	@Test
 	public void testAddAttrezzoEModificaAttrezzo_AttrezzoPosatoConSogliaSuperataPesoDoppio() {
 		assertTrue(this.stanzaMagicaSoglia0.addAttrezzo(attrezzo));
-		assertEquals(this.pesoDoppio,this.stanzaMagicaSoglia0.getAttrezzi()[0].getPeso());
+		assertEquals(this.pesoDoppio,this.stanzaMagicaSoglia0.getAttrezzi().get(0).getPeso());
 	}
 	
 	@Test
 	public void testAddAttrezzo_AttrezzoPosatoSogliaSuperataNomeInvertito() {
 		assertTrue(this.stanzaMagicaSoglia0.addAttrezzo(attrezzo));
-		assertEquals(this.nomeAttrezzoInvertito,this.stanzaMagicaSoglia0.getAttrezzi()[0].getNome());
+		assertEquals(this.nomeAttrezzoInvertito,this.stanzaMagicaSoglia0.getAttrezzi().get(0).getNome());
 	}
 	
 	@Test

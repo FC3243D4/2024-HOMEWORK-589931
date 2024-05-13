@@ -10,8 +10,7 @@ public class LabirintoTest {
 	
 	@Before
 	public void setUp() {
-		this.labirinto=new Labirinto();
-		this.labirinto.creaStanze();
+		this.labirinto=new Labirinto().LabirintoDiaDia();
 	}
 
 	/* Test creaStanze */

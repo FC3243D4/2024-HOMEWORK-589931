@@ -38,7 +38,7 @@ public class StanzaTest {
 	/* Test addAttrezzo */
 	@Test 
 	public void testAddAttrezzo_AggiuntaAttrezzo(){
-		assertEquals(a1,this.stanza1.getAttrezzi()[0]);
+		assertEquals(a1,this.stanza1.getAttrezzi().get(0));
 	}
 	
 	@Test
@@ -51,7 +51,7 @@ public class StanzaTest {
 	@Test
 	public void testAddAttrezzo_AggiungeAttrezziInCodaCorrettamente() {
 		this.stanza1.addAttrezzo(a2);
-		assertEquals(a2,this.stanza1.getAttrezzi()[1]);
+		assertEquals(a2,this.stanza1.getAttrezzi().get(1));
 	}
 	
 	@Test
@@ -106,7 +106,7 @@ public class StanzaTest {
 	@Test
 	public void testRemoveAttrezzo_AttrezzoPresente() {
 		assertTrue(this.stanza1.removeAttrezzo(a1));
-		assertNull(this.stanza1.getAttrezzi()[0]);
+		assertTrue(this.stanza1.getAttrezzi().isEmpty());
 	}
 	
 	@Test
@@ -165,21 +165,21 @@ public class StanzaTest {
 	/* test getDirezioni */
 	@Test
 	public void testGetDirezioni_StanzaConQuattroDirezioniOccupate() {
-		assertEquals("nord",this.stanza1.getDirezioni()[0]);
-		assertEquals("est",this.stanza1.getDirezioni()[1]);
-		assertEquals("sud",this.stanza1.getDirezioni()[2]);
-		assertEquals("ovest",this.stanza1.getDirezioni()[3]);
+		assertEquals("nord",this.stanza1.getDirezioni().get(0));
+		assertEquals("sud",this.stanza1.getDirezioni().get(1));
+		assertEquals("est",this.stanza1.getDirezioni().get(2));
+		assertEquals("ovest",this.stanza1.getDirezioni().get(3));
 	}
 	
 	@Test
 	public void testGetDirezioni_StanzaConUnaSolaDirezione() {
 		this.stanza2.impostaStanzaAdiacente("ovest", stanza6);
-		assertEquals("ovest",this.stanza2.getDirezioni()[0]);
+		assertEquals("ovest",this.stanza2.getDirezioni().get(0));
 	}
 	
 	@Test
 	public void testGetDirezioni_StanzaSenzaAdiacenze() {
-		assertEquals(0,this.stanza6.getDirezioni().length);
+		assertEquals(0,this.stanza6.getDirezioni().size());
 	}
 
 

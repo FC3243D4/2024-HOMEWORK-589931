@@ -40,7 +40,7 @@ public class PartitaTest {
 	
 	@Test
 	public void testVinta_NonAncoraVintaDopoSpostamentoInStanzaNonVincente() {
-		this.partita.setStanzaCorrente(this.partita.getStanzaCorrente().getStanzaAdiacente(this.partita.getStanzaCorrente().getDirezioni()[1]));
+		this.partita.setStanzaCorrente(this.partita.getStanzaCorrente().getStanzaAdiacente(this.partita.getStanzaCorrente().getDirezioni().get(0)));
 		assertFalse(this.partita.vinta());
 	}
 	

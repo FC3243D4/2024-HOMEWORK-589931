@@ -21,10 +21,8 @@ public class Partita {
 	
 	public Partita(Labirinto labirinto){
 		this.labirinto=labirinto;
-		this.labirinto.creaStanze();
 		this.finita = false;
 		this.giocatore = new Giocatore();
-		//this.giocatore.setStanzaCorrente(this.labirinto.getStanzaIniziale());
 		this.stanzaCorrente=this.labirinto.getStanzaIniziale();
 	}
 	

@@ -26,13 +26,13 @@ public class StanzaMagicaProtectedTest {
 	@Test
 	public void testAddAttrezzo_AttrezzoPosatoSogliaNonSuperata() {
 		assertTrue(this.stanzaMagicaProtectedSogliaStandard.addAttrezzo(peso1));
-		assertEquals(this.pesoOriginale,this.stanzaMagicaProtectedSogliaStandard.getAttrezzi()[0].getPeso());
+		assertEquals(this.pesoOriginale,this.stanzaMagicaProtectedSogliaStandard.getAttrezzi().get(0).getPeso());
 	}
 
 	@Test
 	public void testAddAttrezzoEModificaAttrezzo_AttrezzoPosatoConSogliaSuperataPesoDoppio() {
 		assertTrue(this.stanzaMagicaProtectedSoglia0.addAttrezzo(peso1));
-		assertEquals(this.pesoDoppio,this.stanzaMagicaProtectedSoglia0.getAttrezzi()[0].getPeso());
+		assertEquals(this.pesoDoppio,this.stanzaMagicaProtectedSoglia0.getAttrezzi().get(0).getPeso());
 	}
 	
 	@Test
