@@ -165,7 +165,7 @@ public class Borsa {
 		return mappa;
 	}
 
-	SortedSet<Attrezzo> getSortedSetOrdinatoPerPeso(){
+	public SortedSet<Attrezzo> getSortedSetOrdinatoPerPeso(){
 		ComparatorePerPesoENome comparatore = new ComparatorePerPesoENome();
 		SortedSet<Attrezzo> ordinato = new TreeSet<Attrezzo>(comparatore);
 		ordinato.addAll(attrezzi);
