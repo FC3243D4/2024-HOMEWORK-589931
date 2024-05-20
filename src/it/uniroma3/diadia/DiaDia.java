@@ -43,7 +43,7 @@ public class DiaDia {
 		String istruzione;
 
 		io.mostraMessaggio(MESSAGGIO_BENVENUTO);
-		io.mostraMessaggio("Attualmente ti trovi in "+partita.getStanzaCorrente().getNome());
+		io.mostraMessaggio("Attualmente ti trovi in "+this.partita.getStanzaCorrente().getNome());
 		do {
 			istruzione = io.leggiRiga();
 		}while (!processaIstruzione(istruzione,io));
@@ -70,7 +70,8 @@ public class DiaDia {
 	public static void main(String[] argc) throws Exception {
 		Scanner scanner = new Scanner(System.in);
 		IO io = new IOConsole(scanner);
-		CaricatoreLabirinto caricatore = new CaricatoreLabirinto("labirinto.DiaDia.txt");
+		CaricatoreLabirinto caricatore = new CaricatoreLabirinto("LabirintoDiaDia.txt");
+		caricatore.carica();
 		DiaDia gioco = new DiaDia(io, caricatore.getLabirinto());
 		gioco.gioca();
 	}

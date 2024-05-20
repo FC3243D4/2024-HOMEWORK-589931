@@ -119,8 +119,8 @@ public class CaricatoreLabirinto {
 		check(this.isStanzaValida(nomeStanzaIniziale), nomeStanzaIniziale +" non definita");
 		String nomeStanzaVincente = this.leggiRigaCheCominciaPer(STANZA_VINCENTE_MARKER);
 		check(this.isStanzaValida(nomeStanzaVincente), nomeStanzaVincente + " non definita");
-		this.builder.addStanzaIniziale(nomeStanzaIniziale);// = this.nome2stanza.get(nomeStanzaIniziale);
-		this.builder.addStanzaVincente(nomeStanzaVincente);// = this.nome2stanza.get(nomeStanzaVincente);
+		this.builder.setStanzaIniziale(nomeStanzaIniziale);
+		this.builder.setStanzaVincente(nomeStanzaVincente);
 	}
 
 	private void leggiECollocaAttrezzi() throws FormatoFileNonValidoException {
