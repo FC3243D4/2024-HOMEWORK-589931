@@ -24,10 +24,9 @@ public class ComandoPosaTest {
 
 	@Before
 	public void setUp(){
-		this.comando = new ComandoPosa();
+		this.comando = new ComandoPosa(io);
 		this.builder = new LabirintoBuilder();
 		this.io = new IOSimulator();
-		this.comando.setIo(io);
 		this.partita = new Partita(this.builder.getLabirinto().LabirintoDiaDia());
 		this.stanza = new Stanza("stanza");
 		this.partita.setStanzaCorrente(stanza);

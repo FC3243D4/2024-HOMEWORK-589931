@@ -5,48 +5,29 @@ import it.uniroma3.diadia.Partita;
 
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-public class ComandoPrendi implements Comando{
-	private String nomeAttrezzo;
-	private IO io;
-
-	@Override
-	public void esegui(Partita partita) {
-		if(partita.getStanzaCorrente().getNumeroAttrezzi()==0) { 
-			this.io.mostraMessaggio("nessun attrezzo presente nella stanza");
-			return;
-		}
-		else if(nomeAttrezzo == null) 
-			this.io.mostraMessaggio("spceificare l'attrezzo da prendere");
-		else {
-			Attrezzo a = partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
-			if(a!=null) {
-				partita.getGiocatore().getBorsa().addAttrezzo(a);
-				partita.getStanzaCorrente().removeAttrezzo(a);
-				this.io.mostraMessaggio(nomeAttrezzo+" preso da "+partita.getStanzaCorrente().getNome()+" e messo in borsa");
-			}
-			else this.io.mostraMessaggio(nomeAttrezzo+" non presente nella stanza");
-		}
-
-	}
-
-	@Override
-	public void setParametro(String parametro) {
-		this.nomeAttrezzo=parametro;
+public class ComandoPrendi extends AbstractComando {
+	public ComandoPrendi(IO io) {
+		super("prendi",io);
 	}
 	
 	@Override
-	public void setIo(IO io) {
-		this.io = io;
-	}
+	public void esegui(Partita partita) {
+		if(partita.getStanzaCorrente().getNumeroAttrezzi()==0) { 
+			this.getIo().mostraMessaggio("nessun attrezzo presente nella stanza");
+			return;
+		}
+		else if(this.getParametro() == null) 
+			this.getIo().mostraMessaggio("spceificare l'attrezzo da prendere");
+		else {
+			Attrezzo a = partita.getStanzaCorrente().getAttrezzo(this.getParametro());
+			if(a!=null) {
+				partita.getGiocatore().getBorsa().addAttrezzo(a);
+				partita.getStanzaCorrente().removeAttrezzo(a);
+				this.getIo().mostraMessaggio(this.getParametro()+" preso da "+partita.getStanzaCorrente().getNome()+" e messo in borsa");
+			}
+			else this.getIo().mostraMessaggio(this.getParametro()+" non presente nella stanza");
+		}
 
-	@Override
-	public String getNome() {
-		return "prendi";
-	}
-
-	@Override
-	public String getParametro() {
-		return this.nomeAttrezzo;
 	}
 
 }

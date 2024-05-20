@@ -26,9 +26,8 @@ public class ComandoVaiTest {
 
 	@Before
 	public void setUp(){
-		this.comando = new ComandoVai();
+		this.comando = new ComandoVai(io);
 		this.io = new IOSimulator();
-		this.comando.setIo(io);
 		this.builder = new LabirintoBuilder();
 		this.partita = new Partita(this.builder.getLabirinto().LabirintoDiaDia());
 		this.corrente = new Stanza("corrente");

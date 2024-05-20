@@ -24,9 +24,8 @@ public class ComandoPrendiTest {
 
 	@Before
 	public void setUp(){
-		this.comando = new ComandoPrendi();
+		this.comando = new ComandoPrendi(io);
 		this.io = new IOSimulator();
-		this.comando.setIo(io);
 		this.builder = new LabirintoBuilder();
 		this.partita = new Partita(this.builder.getLabirinto().LabirintoDiaDia());
 		this.stanza = new Stanza("stanza");

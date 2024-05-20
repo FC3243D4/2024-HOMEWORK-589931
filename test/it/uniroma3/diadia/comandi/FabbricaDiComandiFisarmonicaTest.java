@@ -19,46 +19,46 @@ public class FabbricaDiComandiFisarmonicaTest {
 
 	@Test
 	public void TestCostruisciComando_ComandoVai() {
-		Comando comandoVai = this.fabbrica.costruisciComando("vai direzione", io);
+		AbstractComando comandoVai = this.fabbrica.costruisciComando("vai direzione", io);
 		assertEquals("vai",comandoVai.getNome());
 		assertEquals("direzione",comandoVai.getParametro());
 	}
 	
 	@Test
 	public void TestCostruisciComando_ComandoPrendi() {
-		Comando comandoPrendi = this.fabbrica.costruisciComando("prendi attrezzo", io);
+		AbstractComando comandoPrendi = this.fabbrica.costruisciComando("prendi attrezzo", io);
 		assertEquals("prendi",comandoPrendi.getNome());
 		assertEquals("attrezzo",comandoPrendi.getParametro());
 	}
 	
 	@Test
 	public void TestCostruisciComando_ComandoPosa() {
-		Comando comandoPosa = this.fabbrica.costruisciComando("posa attrezzo", io);
+		AbstractComando comandoPosa = this.fabbrica.costruisciComando("posa attrezzo", io);
 		assertEquals("posa",comandoPosa.getNome());
 		assertEquals("attrezzo",comandoPosa.getParametro());
 	}
 	
 	@Test
 	public void TestCostruisciComando_ComandoAiuto() {
-		Comando comandoAiuto = this.fabbrica.costruisciComando("aiuto", io);
+		AbstractComando comandoAiuto = this.fabbrica.costruisciComando("aiuto", io);
 		assertEquals("aiuto",comandoAiuto.getNome());
 	}
 	
 	@Test
 	public void TestCostruisciComando_ComandoFine() {
-		Comando comandoFine = this.fabbrica.costruisciComando("fine", io);
+		AbstractComando comandoFine = this.fabbrica.costruisciComando("fine", io);
 		assertEquals("fine",comandoFine.getNome());
 	}
 	
 	@Test
 	public void TestCostruisciComando_ComandoGuarda() {
-		Comando comandoGuarda = this.fabbrica.costruisciComando("guarda", io);
+		AbstractComando comandoGuarda = this.fabbrica.costruisciComando("guarda", io);
 		assertEquals("guarda",comandoGuarda.getNome());
 	}
 	
 	@Test
 	public void TestCostruisciComando_ComandoNonValido() {
-		Comando comandoNonValido = this.fabbrica.costruisciComando("abcd", io);
+		AbstractComando comandoNonValido = this.fabbrica.costruisciComando("abcd", io);
 		assertEquals("comando non valido",comandoNonValido.getNome());
 	}
 
