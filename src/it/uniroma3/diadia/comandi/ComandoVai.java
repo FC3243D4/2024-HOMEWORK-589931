@@ -2,7 +2,7 @@ package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
-
+import it.uniroma3.diadia.ambienti.Direzioni;
 import it.uniroma3.diadia.ambienti.Stanza;
 
 public class ComandoVai extends AbstractComando{	
@@ -18,7 +18,7 @@ public class ComandoVai extends AbstractComando{
 			this.getIo().mostraMessaggio("Dove vuoi andare?\nDevi specificare una direzione");
 			return;
 		}
-		prossimaStanza = stanzaCorrente.getStanzaAdiacente(this.getParametro());
+		prossimaStanza = stanzaCorrente.getStanzaAdiacente(Direzioni.fromName(this.getParametro()));
 		if(prossimaStanza==null) {
 			this.getIo().mostraMessaggio("Direzione inesistente");
 			return;

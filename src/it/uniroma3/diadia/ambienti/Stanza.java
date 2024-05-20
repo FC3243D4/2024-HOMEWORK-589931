@@ -26,7 +26,7 @@ public class Stanza {
 	
 	private String nome;
 	private Map<String,Attrezzo> attrezzi;
-	private Map<String, Stanza> stanzeAdiacenti;
+	private Map<Direzioni, Stanza> stanzeAdiacenti;
 	private AbstractPersonaggio personaggio;
 
 	public AbstractPersonaggio getPersonaggio() {
@@ -36,6 +36,10 @@ public class Stanza {
 	public void setPersonaggio(AbstractPersonaggio personaggio) {
 		this.personaggio = personaggio;
 	}
+	
+	public Map<Direzioni,Stanza> getStanzeAdiacenti() {
+		return this.stanzeAdiacenti;
+	}
 
 	/**
 	 * Crea una stanza. Non ci sono stanze adiacenti, non ci sono attrezzi.
@@ -44,24 +48,24 @@ public class Stanza {
 	public Stanza(String nome) {
 		this.nome = nome;
 		this.attrezzi = new HashMap<String,Attrezzo>();
-		this.stanzeAdiacenti = new HashMap<String, Stanza>();
+		this.stanzeAdiacenti = new HashMap<Direzioni, Stanza>();
 	}
 
 	/**
 	 * Imposta una stanza adiacente.
 	 *
-	 * @param direzione direzione in cui sara' posta la stanza adiacente.
+	 * @param direzioni direzione in cui sara' posta la stanza adiacente.
 	 * @param stanza stanza adiacente nella direzione indicata dal primo parametro.
 	 */
-	public void impostaStanzaAdiacente(String direzione, Stanza stanza) {
-		this.stanzeAdiacenti.put(direzione, stanza);
+	public void impostaStanzaAdiacente(Direzioni direzioni, Stanza stanza) {
+		this.stanzeAdiacenti.put(direzioni, stanza);
 	}
 
 	/**
 	 * Restituisce la stanza adiacente nella direzione specificata
 	 * @param direzione
 	 */
-	public Stanza getStanzaAdiacente(String direzione) {
+	public Stanza getStanzaAdiacente(Direzioni direzione) {
 		return this.stanzeAdiacenti.get(direzione);
 	}
 
@@ -112,7 +116,7 @@ public class Stanza {
 		StringBuilder risultato = new StringBuilder();
 		risultato.append(this.nome);
 		risultato.append("\nUscite:");
-		for (String direzione : this.stanzeAdiacenti.keySet())
+		for (Direzioni direzione : this.stanzeAdiacenti.keySet())
 				risultato.append(" " + direzione);
 		risultato.append("\nAttrezzi nella stanza: ");
 		for (Attrezzo attrezzo : this.attrezzi.values()) {
@@ -157,8 +161,8 @@ public class Stanza {
 	/**
 	 * Restituisce le direzioni in cui possiamo trovare una stanza adiacente
 	 */
-	public List<String> getDirezioni() {
-		return new ArrayList<String>(this.stanzeAdiacenti.keySet());
+	public List<Direzioni> getDirezioni() {
+		return new ArrayList<Direzioni>(this.stanzeAdiacenti.keySet());
 	}
 
 	public int getNumeroAttrezzi() {

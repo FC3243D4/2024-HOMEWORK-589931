@@ -1,5 +1,6 @@
 package it.uniroma3.diadia;
 
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 import it.uniroma3.diadia.ambienti.Labirinto;
@@ -32,19 +33,13 @@ public class DiaDia {
 
 	private Partita partita;
 	private IO io;
-
-	public DiaDia(IO io) {
-		Labirinto labirinto = new Labirinto().LabirintoDiaDia();
-		this.partita = new Partita(labirinto);
-		this.io = io;
-	}
 	
-	public DiaDia(IO io, Labirinto labirinto) {
+	public DiaDia(IO io, Labirinto labirinto) throws FileNotFoundException, FormatoFileNonValidoException{
 		this.partita = new Partita(labirinto);
 		this.io =io;
 	}
 
-	public void gioca() {
+	public void gioca() throws Exception {
 		String istruzione;
 
 		io.mostraMessaggio(MESSAGGIO_BENVENUTO);
@@ -54,7 +49,7 @@ public class DiaDia {
 		}while (!processaIstruzione(istruzione,io));
 	}   
 
-	private boolean processaIstruzione(String istruzione,IO io) {
+	private boolean processaIstruzione(String istruzione,IO io) throws Exception{
 		AbstractComando comandoDaEseguire;
 		FabbricaDiComandiFisarmonica factory = new FabbricaDiComandiFisarmonica();
 
@@ -72,10 +67,11 @@ public class DiaDia {
 		return this.partita;
 	}
 
-	public static void main(String[] argc) {
+	public static void main(String[] argc) throws Exception {
 		Scanner scanner = new Scanner(System.in);
 		IO io = new IOConsole(scanner);
-		DiaDia gioco = new DiaDia(io);
+		CaricatoreLabirinto caricatore = new CaricatoreLabirinto("labirinto.DiaDia.txt");
+		DiaDia gioco = new DiaDia(io, caricatore.getLabirinto());
 		gioco.gioca();
 	}
 }

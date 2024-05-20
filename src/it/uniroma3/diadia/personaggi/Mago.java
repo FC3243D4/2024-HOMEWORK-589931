@@ -28,4 +28,14 @@ public class Mago extends AbstractPersonaggio {
 		}
 		return msg;
 	}
+
+	@Override
+	public String riceviRegalo(Attrezzo regalo, Partita partita) {
+		this.attrezzo.setPeso(this.attrezzo.getPeso()/2);
+		partita.getStanzaCorrente().addAttrezzo(this.attrezzo);
+		this.attrezzo = null;
+		String msg = "fai tesoro di questo dono!";
+
+		return msg;
+	}
 }
