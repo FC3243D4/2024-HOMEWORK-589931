@@ -12,13 +12,13 @@ public class StanzaBloccataTest {
 	private Stanza stanzaDirezioneBloccata;
 	private Stanza stanzaDirezioneNonBloccata;
 	private Attrezzo attrezzoSbloccante;
-	private String direzioneBloccata;
-	private String direzioneNonBloccata;
+	private Direzioni direzioneBloccata;
+	private Direzioni direzioneNonBloccata;
 
 	@Before
 	public void setUp() {
-		this.direzioneBloccata = new String("direzioneBloccata");
-		this.direzioneNonBloccata = new String("direzioneNonBloccata");
+		this.direzioneBloccata = Direzioni.sud;
+		this.direzioneNonBloccata = Direzioni.nord;
 		this.stanzaBloccata = new StanzaBloccata("stanzaBloccata", this.direzioneBloccata, "attrezzoSbloccante");
 		this.stanzaDirezioneBloccata = new Stanza("stanzaDirezioneBloccata");
 		this.stanzaDirezioneNonBloccata = new Stanza("stanzaDirezioneNonBloccata");

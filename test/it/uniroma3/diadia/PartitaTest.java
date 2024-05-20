@@ -2,75 +2,91 @@ package it.uniroma3.diadia;
 
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import it.uniroma3.diadia.ambienti.Direzioni;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.Stanza;
 
 public class PartitaTest {
-	private Labirinto labirinto;
-	private Stanza stanza1;
-	private Stanza stanza2;
 	private Partita partita;
+	private Labirinto trilocale;
+	private Labirinto bilocale;
+	private Labirinto monolocale;
+	private Labirinto labirintoDiaDia;
 	
 	@Before
-	public void setUp() {
-		this.labirinto = new Labirinto();
-		this.stanza1 = new Stanza("stanza1");
-		this.stanza2 = new Stanza("stanza2");
-		this.labirinto.setStanzaIniziale(stanza1);
-		this.labirinto.setStanzaVincente(stanza2);
-		this.partita = new Partita(this.labirinto);
-		this.partita.getLabirinto().getStanzaIniziale().impostaStanzaAdiacente("sud", stanza1);
-		this.partita.setStanzaCorrente(this.labirinto.getStanzaIniziale());
+	public void setUp() throws FileNotFoundException, FormatoFileNonValidoException {
+		CaricatoreLabirinto caricatoreTrilocale = new CaricatoreLabirinto("LabirintoTrilocale.txt");
+		caricatoreTrilocale.carica();
+		this.trilocale = caricatoreTrilocale.getLabirinto();
+		
+		CaricatoreLabirinto caricatoreBilocale = new CaricatoreLabirinto("LabirintoBilocale.txt");
+		caricatoreBilocale.carica();
+		this.bilocale = caricatoreBilocale.getLabirinto();
+		
+		CaricatoreLabirinto caricatoreMonolocale = new CaricatoreLabirinto("LabirintoMonolocale.txt");
+		caricatoreMonolocale.carica();
+		this.monolocale = caricatoreMonolocale.getLabirinto();
+		
+		CaricatoreLabirinto caricatoreDiaDia = new CaricatoreLabirinto("LabirintoDiaDia.txt");
+		caricatoreDiaDia.carica();
+		this.labirintoDiaDia = caricatoreDiaDia.getLabirinto();
 	}
 	
 	/* Test vinta */
 	@Test
-	public void testVinta_Vittoria() {
-		this.partita.setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
+	public void testVinta_Vittoria() throws FileNotFoundException, FormatoFileNonValidoException {
+		this.partita = new Partita(this.monolocale);
 		assertTrue(this.partita.vinta());
 	}
 	
 	@Test
-	public void testVinta_NonAncoraVinta() {
+	public void testVinta_NonAncoraVinta() throws FileNotFoundException, FormatoFileNonValidoException {
+		this.partita = new Partita(this.bilocale);
 		assertFalse(this.partita.vinta());
 	}
 	
 	@Test
-	public void testVinta_NonAncoraVintaDopoSpostamentoInStanzaNonVincente() {
-		this.partita.setStanzaCorrente(this.partita.getStanzaCorrente().getStanzaAdiacente(this.partita.getStanzaCorrente().getDirezioni().get(0)));
+	public void testVinta_NonAncoraVintaDopoSpostamentoInStanzaNonVincente() throws FileNotFoundException, FormatoFileNonValidoException {
+		this.partita = new Partita(this.trilocale);
+		this.partita.setStanzaCorrente(this.partita.getStanzaCorrente().getStanzaAdiacente(Direzioni.nord));
 		assertFalse(this.partita.vinta());
 	}
 	
 	@Test
-	public void testVinta_VittoriaDopoSpostamentoInStanzaVincente() {
+	public void testVinta_VittoriaDopoSpostamentoInStanzaVincente() throws FileNotFoundException, FormatoFileNonValidoException {
+		this.partita = new Partita(this.bilocale);
 		this.partita.setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
 		assertTrue(this.partita.vinta());
 	}
 	
 	/* Test isFinita */
 	@Test
-	public void testIsFinita_ZeroCfu() {
+	public void testIsFinita_ZeroCfu() throws FileNotFoundException, FormatoFileNonValidoException {
+		this.partita = new Partita(this.labirintoDiaDia);
 		this.partita.getGiocatore().setCfu(0);
 		assertTrue(this.partita.isFinita());
 	}
 	
 	@Test
-	public void testIsFinita_FinitaTrue() {
+	public void testIsFinita_FinitaTrue() throws FileNotFoundException, FormatoFileNonValidoException {
+		this.partita = new Partita(this.labirintoDiaDia);
 		this.partita.setFinita();
 		assertTrue(this.partita.isFinita());
 	}
 	
 	@Test
-	public void testIsFinita_Vinta() {
-		this.partita.setStanzaCorrente(this.partita.getLabirinto().getStanzaVincente());
+	public void testIsFinita_Vinta() throws FileNotFoundException, FormatoFileNonValidoException {
+		this.partita = new Partita(this.monolocale);
 		assertTrue(this.partita.isFinita());
 	}
 	
 	@Test
-	public void testIsFinita_NonAncoraFinita() {
+	public void testIsFinita_NonAncoraFinita() throws FileNotFoundException, FormatoFileNonValidoException {
+		this.partita = new Partita(this.trilocale);
 		assertFalse(this.partita.isFinita());
 	}
 

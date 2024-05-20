@@ -3,7 +3,6 @@ package it.uniroma3.diadia.personaggi;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Direzioni;
 import it.uniroma3.diadia.ambienti.Stanza;
-import it.uniroma3.diadia.ambienti.StanzaBloccata;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class Strega extends AbstractPersonaggio {

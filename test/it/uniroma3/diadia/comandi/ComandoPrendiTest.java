@@ -2,13 +2,17 @@ package it.uniroma3.diadia.comandi;
 
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
+
 import org.junit.Test;
 import org.junit.Before;
 
+import it.uniroma3.diadia.CaricatoreLabirinto;
+import it.uniroma3.diadia.FormatoFileNonValidoException;
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.ambienti.Direzioni;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -17,25 +21,29 @@ public class ComandoPrendiTest {
 	private Partita partita;
 	private Stanza stanza;
 	private Attrezzo attrezzo;
-	private LabirintoBuilder builder;
 	private IOSimulator io;
-	private Labirinto monolocale;
+	private Labirinto trilocale;
+	private Labirinto labirintoDiaDia;
 
 
 	@Before
-	public void setUp(){
-		this.comando = new ComandoPrendi(io);
+	public void setUp() throws FileNotFoundException, FormatoFileNonValidoException{
 		this.io = new IOSimulator();
-		this.builder = new LabirintoBuilder();
-		this.partita = new Partita(this.builder.getLabirinto().LabirintoDiaDia());
+		this.comando = new ComandoPrendi(io);
+		
+		CaricatoreLabirinto caricatoreDiaDia = new CaricatoreLabirinto("LabirintoDiaDia.txt");
+		caricatoreDiaDia.carica();
+		this.labirintoDiaDia = caricatoreDiaDia.getLabirinto();
+		
+		this.partita = new Partita(this.labirintoDiaDia);
 		this.stanza = new Stanza("stanza");
 		this.partita.setStanzaCorrente(stanza);
 		this.attrezzo = new Attrezzo("attrezzo", 1);
 		stanza.addAttrezzo(attrezzo);
-		this.monolocale = new LabirintoBuilder()
-				.addStanzaIniziale("camera").addAttrezzo("letto",10)
-
-				.getLabirinto();
+		
+		CaricatoreLabirinto caricatoreTrilocale = new CaricatoreLabirinto("LabirintoTrilocale.txt");
+		caricatoreTrilocale.carica();
+		this.trilocale = caricatoreTrilocale.getLabirinto();
 	}
 
 	@Test
@@ -67,11 +75,12 @@ public class ComandoPrendiTest {
 	}
 	
 	@Test
-	public void testEsegui_SuMonolocale() {
-		this.partita=new Partita(monolocale);
-		this.comando.setParametro("letto");
+	public void testEsegui_SuTrilocale() throws FileNotFoundException, FormatoFileNonValidoException {
+		this.partita=new Partita(this.trilocale);
+		this.partita.setStanzaCorrente(this.partita.getStanzaCorrente().getStanzaAdiacente(Direzioni.nord));
+		this.comando.setParametro("pentola");
 		this.comando.esegui(this.partita);
-		assertEquals(true,this.partita.getGiocatore().getBorsa().hasAttrezzo("letto"));	
+		assertEquals(true,this.partita.getGiocatore().getBorsa().hasAttrezzo("pentola"));	
 	}
 
 

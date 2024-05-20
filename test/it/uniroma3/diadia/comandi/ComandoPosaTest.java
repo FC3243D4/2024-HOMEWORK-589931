@@ -2,13 +2,16 @@ package it.uniroma3.diadia.comandi;
 
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
+
 import org.junit.Test;
 import org.junit.Before;
 
+import it.uniroma3.diadia.CaricatoreLabirinto;
+import it.uniroma3.diadia.FormatoFileNonValidoException;
 import it.uniroma3.diadia.IOSimulator;
 import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Labirinto;
-import it.uniroma3.diadia.ambienti.LabirintoBuilder;
 import it.uniroma3.diadia.ambienti.Stanza;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
@@ -16,26 +19,30 @@ public class ComandoPosaTest {
 	private ComandoPosa comando;
 	private Partita partita;
 	private Stanza stanza;
-	private LabirintoBuilder builder;
 	private Attrezzo attrezzoInBorsa;
 	private IOSimulator io;
 	private Labirinto monolocale;
+	private Labirinto labirintoDiaDia;
 
 
 	@Before
-	public void setUp(){
-		this.comando = new ComandoPosa(io);
-		this.builder = new LabirintoBuilder();
+	public void setUp() throws FileNotFoundException, FormatoFileNonValidoException{
 		this.io = new IOSimulator();
-		this.partita = new Partita(this.builder.getLabirinto().LabirintoDiaDia());
+		this.comando = new ComandoPosa(io);
+		
+		CaricatoreLabirinto caricatoreDiaDia = new CaricatoreLabirinto("LabirintoDiaDia.txt");
+		caricatoreDiaDia.carica();
+		this.labirintoDiaDia = caricatoreDiaDia.getLabirinto();
+		
+		this.partita = new Partita(this.labirintoDiaDia);
 		this.stanza = new Stanza("stanza");
 		this.partita.setStanzaCorrente(stanza);
 		this.attrezzoInBorsa = new Attrezzo("attrezzo", 1);
 		this.partita.getGiocatore().getBorsa().addAttrezzo(attrezzoInBorsa);
-		this.monolocale = new LabirintoBuilder()
-				.addStanzaIniziale("salotto")
-				.addStanzaVincente("salotto") 
-				.getLabirinto();
+		
+		CaricatoreLabirinto caricatoreMonolocale = new CaricatoreLabirinto("LabirintoMonolocale.txt");
+		caricatoreMonolocale.carica();
+		this.monolocale = caricatoreMonolocale.getLabirinto();
 	}
 
 	@Test
@@ -67,7 +74,7 @@ public class ComandoPosaTest {
 	}
 	
 	@Test
-	public void testEsegui_SuMonolocale() {
+	public void testEsegui_SuMonolocale() throws FileNotFoundException, FormatoFileNonValidoException {
 		this.partita=new Partita(monolocale);
 		this.partita.getGiocatore().getBorsa().addAttrezzo(attrezzoInBorsa);
 		this.comando.setParametro("attrezzo");

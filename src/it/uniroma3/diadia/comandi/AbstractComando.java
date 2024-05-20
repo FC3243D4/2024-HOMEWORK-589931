@@ -1,5 +1,7 @@
 package it.uniroma3.diadia.comandi;
 
+import java.io.IOException;
+
 import it.uniroma3.diadia.IO;
 import it.uniroma3.diadia.Partita;
 
@@ -38,6 +40,6 @@ public abstract class AbstractComando {
 		this.parametro = parametro;
 	}
 	
-	public abstract void esegui(Partita partita);
+	public abstract void esegui(Partita partita) throws ClassNotFoundException, IOException;
 
 }

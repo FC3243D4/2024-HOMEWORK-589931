@@ -6,6 +6,7 @@ import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 public class ComandoPosa extends AbstractComando{
+	
 	public ComandoPosa(IO io) {
 		super("posa", io);
 	}

@@ -11,12 +11,13 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Set;
 
+import it.uniroma3.diadia.properties.CaricatoreProperties;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.attrezzi.ComparatorePerPeso;
 import it.uniroma3.diadia.attrezzi.ComparatorePerPesoENome;
 
 public class Borsa {
-	public final static int DEFAULT_PESO_MAX_BORSA = 10;
+	public final static int DEFAULT_PESO_MAX_BORSA = CaricatoreProperties.getPesoMax();
 	private Map<String,Attrezzo> attrezzi;
 	private int pesoMax;
 	private int pesoCorrente;
