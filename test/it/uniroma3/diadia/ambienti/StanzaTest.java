@@ -14,8 +14,18 @@ public class StanzaTest {
 	private Stanza stanza4;
 	private Stanza stanza5;
 	private Stanza stanza6;
+	private Stanza stanzaPiena;
 	private Attrezzo a1;
 	private Attrezzo a2;
+	private Attrezzo a3;
+	private Attrezzo a4;
+	private Attrezzo a5;
+	private Attrezzo a6;
+	private Attrezzo a7;
+	private Attrezzo a8;
+	private Attrezzo a9;
+	private Attrezzo a10;
+	private Attrezzo a11;
 	
 	@Before
 	public void setUp() {
@@ -25,10 +35,30 @@ public class StanzaTest {
 		this.stanza4 =new Stanza("stanza4");
 		this.stanza5 =new Stanza("stanza5");
 		this.stanza6 =new Stanza("stanza6");
+		this.stanzaPiena = new Stanza("stanzaPiena");
 		this.a1 = new Attrezzo("a1",1);
 		this.a2 = new Attrezzo("a2",2);
+		this.a3 = new Attrezzo("a3",3);
+		this.a4 = new Attrezzo("a4",4);
+		this.a5 = new Attrezzo("a5",5);
+		this.a6 = new Attrezzo("a6",6);
+		this.a7 = new Attrezzo("a7",7);
+		this.a8 = new Attrezzo("a8",8);
+		this.a9 = new Attrezzo("a9",9);
+		this.a10 = new Attrezzo("a10",10);
+		this.a11 = new Attrezzo("a11",11);
 		this.stanza1.addAttrezzo(a1);
 		this.stanza2.addAttrezzo(a2);
+		this.stanzaPiena.addAttrezzo(a1);
+		this.stanzaPiena.addAttrezzo(a2);
+		this.stanzaPiena.addAttrezzo(a3);
+		this.stanzaPiena.addAttrezzo(a4);
+		this.stanzaPiena.addAttrezzo(a5);
+		this.stanzaPiena.addAttrezzo(a6);
+		this.stanzaPiena.addAttrezzo(a7);
+		this.stanzaPiena.addAttrezzo(a8);
+		this.stanzaPiena.addAttrezzo(a9);
+		this.stanzaPiena.addAttrezzo(a10);
 		this.stanza1.impostaStanzaAdiacente("nord", stanza2);
 		this.stanza1.impostaStanzaAdiacente("est", stanza3);
 		this.stanza1.impostaStanzaAdiacente("sud", stanza4);
@@ -43,9 +73,9 @@ public class StanzaTest {
 	
 	@Test
 	public void testAddAttrezzo_NumeroMassimoRaggiunto() {
-		for(int i=2; i<=10; i++)
-			this.stanza1.addAttrezzo(a1);
-		assertFalse(this.stanza1.addAttrezzo(a1));
+		assertFalse(this.stanzaPiena.addAttrezzo(a11));
+		
+		
 	}
 	
 	@Test

@@ -3,10 +3,7 @@ package it.uniroma3.diadia.giocatore;
 import static org.junit.Assert.*;
 
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
-import java.util.SortedSet;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +13,6 @@ public class BorsaTest {
 	private Borsa borsa;
 	private Attrezzo a1;
 	private Attrezzo a2;
-	private Attrezzo a3;
 	private Attrezzo peso10;
 	private Attrezzo peso9;
 
@@ -25,7 +21,7 @@ public class BorsaTest {
 		this.borsa = new Borsa(10);
 		this.a1 = new Attrezzo("a1",1);
 		this.a2 = new Attrezzo("a2",2);
-		this.a3 = new Attrezzo("a3",3);
+		new Attrezzo("a3",3);
 		this.peso10 = new Attrezzo("peso", 10);
 		this.peso9 = new Attrezzo("peso", 9);
 	}
