@@ -23,21 +23,11 @@ public class DiaDiaTest {
 	public void setUp() throws FileNotFoundException, FormatoFileNonValidoException {
 		this.comandi = new ArrayList<String>();
 		
-//		CaricatoreLabirinto caricatoreTrilocale = new CaricatoreLabirinto("LabirintoTrilocale.txt");
-//		caricatoreTrilocale.carica();
-//		this.trilocale = caricatoreTrilocale.getLabirinto();
-		
 		CaricatoreLabirinto caricatoreBilocale = new CaricatoreLabirinto("LabirintoBilocale.txt");
 		caricatoreBilocale.carica();
 		this.bilocale = caricatoreBilocale.getLabirinto();
 		
-//		CaricatoreLabirinto caricatoreMonolocale = new CaricatoreLabirinto("LabirintoMonolocale.txt");
-//		caricatoreMonolocale.carica();
-//		this.monolocale = caricatoreMonolocale.getLabirinto();
-		
-		CaricatoreLabirinto caricatoreDiaDia = new CaricatoreLabirinto("LabirintoDiaDia.txt");
-		caricatoreDiaDia.carica();
-		this.labirintoDiaDia = caricatoreDiaDia.getLabirinto();
+		this.labirintoDiaDia = Labirinto.newBuilder().getLabirinto().LabirintoDiaDia();
 	}
 
 	@Test

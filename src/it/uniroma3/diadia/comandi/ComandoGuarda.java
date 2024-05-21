@@ -14,6 +14,10 @@ public class ComandoGuarda extends AbstractComando{
 		super("guarda", io);
 	}
 	
+	public ComandoGuarda() {
+		this(null);
+	}
+	
 	@Override
 	public void esegui(Partita partita) {
 		this.getIo().mostraMessaggio(partita.getStanzaCorrente().getDescrizione());

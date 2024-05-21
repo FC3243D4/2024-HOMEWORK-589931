@@ -9,6 +9,10 @@ public class ComandoVai extends AbstractComando{
 	public ComandoVai(IO io) {
 		super("vai", io);
 	}
+	
+	public ComandoVai() {
+		this(null);
+	}
 
 	@Override
 	public void esegui(Partita partita) {

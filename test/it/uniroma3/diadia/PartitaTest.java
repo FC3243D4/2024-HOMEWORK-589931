@@ -31,9 +31,7 @@ public class PartitaTest {
 		caricatoreMonolocale.carica();
 		this.monolocale = caricatoreMonolocale.getLabirinto();
 		
-		CaricatoreLabirinto caricatoreDiaDia = new CaricatoreLabirinto("LabirintoDiaDia.txt");
-		caricatoreDiaDia.carica();
-		this.labirintoDiaDia = caricatoreDiaDia.getLabirinto();
+		this.labirintoDiaDia = Labirinto.newBuilder().getLabirinto().LabirintoDiaDia();
 	}
 	
 	/* Test vinta */

@@ -10,6 +10,10 @@ public class ComandoPosa extends AbstractComando{
 	public ComandoPosa(IO io) {
 		super("posa", io);
 	}
+	
+	public ComandoPosa() {
+		this(null);
+	}
 
 	@Override
 	public void esegui(Partita partita) {

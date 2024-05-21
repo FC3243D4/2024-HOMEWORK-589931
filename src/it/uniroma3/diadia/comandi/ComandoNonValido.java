@@ -8,6 +8,10 @@ public class ComandoNonValido extends AbstractComando{
 	public ComandoNonValido(IO io) {
 		super("comando non valido", io);
 	}
+	
+	public ComandoNonValido() {
+		this(null);
+	}
 
 	@Override
 	public void esegui(Partita partita) {

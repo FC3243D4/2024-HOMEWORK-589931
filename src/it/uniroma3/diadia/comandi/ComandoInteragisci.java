@@ -7,12 +7,14 @@ import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
 
 public class ComandoInteragisci extends AbstractComando {
-	private static final String MESSAGGIO_CON_CHI =
-			"Con chi dovrei interagire?...";
 	private String messaggio;
 	
 	public ComandoInteragisci(IO io) {
 		super("interagisci",io);
+	}
+	
+	public ComandoInteragisci() {
+		this(null);
 	}
 	
 	@Override
@@ -23,7 +25,7 @@ public class ComandoInteragisci extends AbstractComando {
 			this.messaggio = personaggio.agisci(partita);
 			this.getIo().mostraMessaggio(this.messaggio);
 
-		} else this.getIo().mostraMessaggio(MESSAGGIO_CON_CHI);
+		} else this.getIo().mostraMessaggio("con chi vuoi interagire");
 	}
 	public String getMessaggio() {
 		return this.messaggio;

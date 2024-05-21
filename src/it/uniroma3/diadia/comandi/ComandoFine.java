@@ -9,6 +9,10 @@ public class ComandoFine extends AbstractComando{
 		super("fine", io);
 	}
 	
+	public ComandoFine() {
+		this(null);
+	}
+	
 	@Override
 	public void esegui(Partita partita) {
 		this.getIo().mostraMessaggio("Grazie di aver giocato!");

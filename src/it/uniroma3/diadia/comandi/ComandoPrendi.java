@@ -10,6 +10,10 @@ public class ComandoPrendi extends AbstractComando {
 		super("prendi",io);
 	}
 	
+	public ComandoPrendi() {
+		this(null);
+	}
+	
 	@Override
 	public void esegui(Partita partita) {
 		if(partita.getStanzaCorrente().getNumeroAttrezzi()==0) { 

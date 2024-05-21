@@ -8,6 +8,10 @@ public class ComandoSaluta extends AbstractComando{
 	public ComandoSaluta(IO io) {
 		super("saluta",io);
 	}
+	
+	public ComandoSaluta() {
+		this(null);
+	}
 
 	@Override
 	public void esegui(Partita partita) {

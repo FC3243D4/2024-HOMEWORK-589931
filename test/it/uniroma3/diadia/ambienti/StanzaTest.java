@@ -193,13 +193,13 @@ public class StanzaTest {
 	}
 	
 	/* test getDirezioni */
-//	@Test
-//	public void testGetDirezioni_StanzaConQuattroDirezioniOccupate() {
-//		assertEquals(Direzioni.nord,this.stanza1.getDirezioni().get(0));
-//		assertEquals(Direzioni.sud,this.stanza1.getDirezioni().get(1));
-//		assertEquals(Direzioni.est,this.stanza1.getDirezioni().get(2));
-//		assertEquals(Direzioni.ovest,this.stanza1.getDirezioni().get(3));
-//	}
+	@Test
+	public void testGetDirezioni_StanzaConQuattroDirezioniOccupate() {
+		assertTrue(this.stanza1.getDirezioni().contains(Direzioni.nord));
+		assertTrue(this.stanza1.getDirezioni().contains(Direzioni.est));
+		assertTrue(this.stanza1.getDirezioni().contains(Direzioni.sud));
+		assertTrue(this.stanza1.getDirezioni().contains(Direzioni.ovest));
+	}
 	
 	@Test
 	public void testGetDirezioni_StanzaConUnaSolaDirezione() {

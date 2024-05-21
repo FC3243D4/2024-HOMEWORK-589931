@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.uniroma3.diadia.CaricatoreLabirinto;
 import it.uniroma3.diadia.FormatoFileNonValidoException;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 import it.uniroma3.diadia.personaggi.AbstractPersonaggio;
@@ -163,5 +164,11 @@ public class Labirinto {
 			this.mappaStanze.get(nomeStanza).setPersonaggio(mago);
 			return this;
 		}
+	}
+	
+	public Labirinto LabirintoDiaDia() throws FileNotFoundException, FormatoFileNonValidoException {
+		CaricatoreLabirinto caricatore = new CaricatoreLabirinto("LabirintoDiaDia.txt");
+		caricatore.carica();
+		return caricatore.getLabirinto();
 	}
 }
