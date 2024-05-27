@@ -16,7 +16,7 @@ public class CaricatoreLabirintoTest {
 	private Labirinto trilocale;
 
 	@Before
-	void setUp() throws Exception {
+	public void setUp() throws Exception {
 		CaricatoreLabirinto caricatoreTrilocale = new CaricatoreLabirinto("LabirintoTrilocale.txt");
 		caricatoreTrilocale.carica();
 		this.trilocale = caricatoreTrilocale.getLabirinto();
@@ -31,34 +31,34 @@ public class CaricatoreLabirintoTest {
 	}
 
 	@Test
-	void testCaricatore_MonolocaleStanzaCorrenteEVincenteCoincidono() throws FileNotFoundException, FormatoFileNonValidoException {
+	public void testCaricatore_MonolocaleStanzaCorrenteEVincenteCoincidono() throws FileNotFoundException, FormatoFileNonValidoException {
 		assertEquals("salotto",this.monolocale.getStanzaIniziale().getNome());
 		assertEquals("salotto",this.monolocale.getStanzaVincente().getNome());
 	}
 
 	@Test
-	void testCaricatore_BilocaleLettoInCamera() throws FileNotFoundException, FormatoFileNonValidoException {
+	public void testCaricatore_BilocaleLettoInCamera() throws FileNotFoundException, FormatoFileNonValidoException {
 		assertEquals("letto",this.bilocale.getStanzaVincente().getAttrezzi().get(0).getNome());
 	}
 
 	@Test
-	void testCaricatore_BilocaleCaneInSalotto() throws FileNotFoundException, FormatoFileNonValidoException {
+	public void testCaricatore_BilocaleCaneInSalotto() throws FileNotFoundException, FormatoFileNonValidoException {
 		assertEquals("Rex",this.bilocale.getStanzaIniziale().getPersonaggio().getNome());
 	}
 
 	@Test
-	void testCaricatore_TrilocaleMagoInSalottoEStregaInCucina() throws FileNotFoundException, FormatoFileNonValidoException {
+	public void testCaricatore_TrilocaleMagoInSalottoEStregaInCucina() throws FileNotFoundException, FormatoFileNonValidoException {
 		assertEquals("Merlino",this.trilocale.getStanzaIniziale().getPersonaggio().getNome());
 		assertEquals("Strega",this.trilocale.getStanzaIniziale().getStanzaAdiacente(Direzioni.nord).getPersonaggio().getNome());
 	}
 
 	@Test
-	void testCaricatore_BilocaleSalottoBloccata() throws FileNotFoundException, FormatoFileNonValidoException {
+	public void testCaricatore_BilocaleSalottoBloccata() throws FileNotFoundException, FormatoFileNonValidoException {
 		assertEquals("StanzaBloccata",this.bilocale.getStanzaIniziale().getClass().getSimpleName());
 	}
 
 	@Test
-	void testCaricatore_TrilocaleSalottoBuiaECucinaMagica() throws FileNotFoundException, FormatoFileNonValidoException {
+	public void testCaricatore_TrilocaleSalottoBuiaECucinaMagica() throws FileNotFoundException, FormatoFileNonValidoException {
 		assertEquals("StanzaBuia",this.trilocale.getStanzaIniziale().getClass().getSimpleName());
 		assertEquals("StanzaMagica",this.trilocale.getStanzaIniziale().getStanzaAdiacente(Direzioni.nord).getClass().getSimpleName());
 	}
