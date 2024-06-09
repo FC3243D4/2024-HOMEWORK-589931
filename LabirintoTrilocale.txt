@@ -1,4 +1,4 @@
-Stanze:camera
+Stanze:camera, salotto, cucina
 Buia:salotto lanterna
 Bloccata:
 Magica:cucina 3

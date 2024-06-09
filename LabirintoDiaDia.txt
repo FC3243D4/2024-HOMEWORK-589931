@@ -1,4 +1,4 @@
-Stanze:N11,LaboratorioCampus
+Stanze:N11,LaboratorioCampus, N10, Atrio, Biblioteca
 Buia:N10 lanterna
 Bloccata:Atrio nord chiave
 Magica:Biblioteca 3

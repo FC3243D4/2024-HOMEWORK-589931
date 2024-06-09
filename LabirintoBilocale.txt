@@ -1,4 +1,4 @@
-Stanze:camera
+Stanze:camera, salotto
 Buia:
 Bloccata:salotto sud chiave
 Magica:
